@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pakistan Islamic Car Ijarah Calculator | SBP Compliant</title>
+  <meta name="description" content="Calculate Shariah-compliant Car Ijarah installments in Pakistan. Incorporates SBP engine capacity tenure limits, KIBOR benchmark rates, mandatory Takaful, and 40% DBR affordability.">
+  
+  <!-- Modern Google Typography with local fallbacks -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="src/css/variables.css">
+  <link rel="stylesheet" href="src/css/base.css">
+  <link rel="stylesheet" href="src/css/components.css">
+  <link rel="stylesheet" href="src/css/animations.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header Section -->
+    <header class="app-header">
+      <div class="brand-section">
+        <div class="brand-icon" aria-hidden="true">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M19 17h2c.6 0 1-.4 1-1v-3c0-.9-.7-1.7-1.5-1.9C18.7 10.6 16 10 16 10s-1.3-1.4-2.2-2.3c-.5-.4-1.1-.7-1.8-.7H5c-.6 0-1.1.4-1.4.9l-1.4 2.9A3.7 3.7 0 0 0 2 12v4c0 .6.4 1 1 1h2"/>
+            <circle cx="7" cy="17" r="2"/>
+            <path d="M9 17h6"/>
+            <circle cx="17" cy="17" r="2"/>
+          </svg>
+        </div>
+        <div class="brand-titles">
+          <h1>Pakistan Islamic Car Ijarah Calculator</h1>
+          <p>Shariah-Compliant Auto Leasing (Ijarah Muntahia Bittamleek) &bull; SBP Regulated</p>
+        </div>
+      </div>
+      
+      <div class="header-controls">
+        <span class="badge badge-sbp">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+          SBP BPRD Cir. 04 Compliant
+        </span>
+        <button type="button" class="btn-secondary" id="btn-open-manage-banks" aria-label="Manage Bank Rates">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          Manage Banks
+        </button>
+        <button type="button" class="btn-secondary" id="btn-theme-toggle" aria-label="Toggle Theme">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>
+        </button>
+      </div>
+    </header>
+
+    <!-- Main Workspace -->
+    <main class="calculator-grid">
+      <!-- Left Column: Parameters & Configuration -->
+      <section class="config-column" aria-label="Vehicle & Financing Parameters">
+        
+        <!-- 1. Popular Vehicle Presets Card -->
+        <article class="card">
+          <div class="card-title">
+            <span class="icon-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              Popular Pakistani Vehicles
+            </span>
+            <span class="form-hint">1-Click Presets</span>
+          </div>
+          <div class="presets-grid" id="presets-container" role="group" aria-label="Car Presets">
+            <!-- Dynamically populated -->
+          </div>
+        </article>
+
+        <!-- 2. Vehicle Pricing & Regulatory Category Card -->
+        <article class="card">
+          <div class="card-title">
+            <span class="icon-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+              Vehicle Details & Category
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="input-vehicle-price">
+              Vehicle Price (Ex-Factory / On-Road PKR)
+              <span class="form-hint">Pakistani Rupees</span>
+            </label>
+            <input type="text" id="input-vehicle-price" class="text-input" value="3,050,000" inputmode="numeric" placeholder="e.g. 3,050,000">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              Engine Displacement Category
+              <span class="form-hint">SBP Regulation Rule</span>
+            </label>
+            <div class="btn-group" role="group" aria-label="Engine Displacement Category">
+              <button type="button" class="btn-toggle active" data-engine-category="upto_1000cc" id="btn-engine-upto-1000">
+                &le; 1,000 cc / EV (Max 5 Yrs)
+              </button>
+              <button type="button" class="btn-toggle" data-engine-category="above_1000cc" id="btn-engine-above-1000">
+                &gt; 1,000 cc (Max 3 Yrs)
+              </button>
+            </div>
+            <div id="sbp-tenure-alert" class="alert-box alert-info" style="display: none;"></div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              Borrower Profile
+              <span class="form-hint">Equity Guideline</span>
+            </label>
+            <div class="btn-group" role="group" aria-label="Borrower Profile">
+              <button type="button" class="btn-toggle active" data-customer-type="salaried" id="btn-type-salaried">
+                Salaried (Min 30%)
+              </button>
+              <button type="button" class="btn-toggle" data-customer-type="business" id="btn-type-business">
+                Business / Self-Employed (Min 35%)
+              </button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 3. Security Deposit & Tenure Card -->
+        <article class="card">
+          <div class="card-title">
+            <span class="icon-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+              Security Deposit & Tenure
+            </span>
+          </div>
+
+          <div class="form-group">
+            <div class="form-label">
+              <span>Security Deposit (Down Payment)</span>
+              <strong id="label-deposit-percent" style="color: var(--color-primary);">30.0%</strong>
+            </div>
+            <input type="range" id="slider-deposit-percent" class="range-slider" min="15" max="80" step="0.5" value="30">
+            <div class="input-row" style="margin-top: 0.5rem;">
+              <input type="text" id="input-deposit-amount" class="text-input" value="915,000" inputmode="numeric" placeholder="Deposit in PKR">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              Financing Tenure
+              <span class="form-hint">Regulated by Engine Capacity</span>
+            </label>
+            <div class="btn-group" role="group" aria-label="Financing Tenure in Months">
+              <button type="button" class="btn-toggle" data-tenure-months="12" id="tenure-12">1 Yr (12m)</button>
+              <button type="button" class="btn-toggle" data-tenure-months="24" id="tenure-24">2 Yrs (24m)</button>
+              <button type="button" class="btn-toggle" data-tenure-months="36" id="tenure-36">3 Yrs (36m)</button>
+              <button type="button" class="btn-toggle" data-tenure-months="48" id="tenure-48">4 Yrs (48m)</button>
+              <button type="button" class="btn-toggle active" data-tenure-months="60" id="tenure-60">5 Yrs (60m)</button>
+            </div>
+          </div>
+        </article>
+
+        <!-- 4. Islamic Bank Rates & Profit Builder Card -->
+        <article class="card">
+          <div class="card-title">
+            <span class="icon-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+              Islamic Banking Profile & Profit Rate
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="select-bank">
+              Select Islamic Bank Profile
+              <span class="form-hint">Pre-configured packages</span>
+            </label>
+            <select id="select-bank" class="select-input">
+              <!-- Dynamically populated -->
+            </select>
+          </div>
+
+          <div class="input-row" style="margin-bottom: 1.25rem;">
+            <div class="form-group" style="flex: 1; margin-bottom: 0;">
+              <label class="form-label" for="input-kibor">1-Yr KIBOR Benchmark (%)</label>
+              <input type="number" id="input-kibor" class="text-input" step="0.25" min="0" max="30" value="13.00">
+            </div>
+            <div class="form-group" style="flex: 1; margin-bottom: 0;">
+              <label class="form-label" for="input-spread">Bank Spread (%)</label>
+              <input type="number" id="input-spread" class="text-input" step="0.25" min="0" max="15" value="2.50">
+            </div>
+          </div>
+
+          <div class="input-row">
+            <div class="form-group" style="flex: 1; margin-bottom: 0;">
+              <label class="form-label" for="input-takaful-rate">Annual Takaful Rate (%)</label>
+              <input type="number" id="input-takaful-rate" class="text-input" step="0.1" min="0" max="10" value="2.00">
+            </div>
+            <div class="form-group" style="flex: 1; margin-bottom: 0;">
+              <label class="form-label" for="input-processing-fee">Bank Processing Fee (PKR)</label>
+              <input type="text" id="input-processing-fee" class="text-input" value="10,000" inputmode="numeric">
+            </div>
+          </div>
+
+          <div class="switch-container" style="margin-top: 1rem;">
+            <span style="font-size: 0.85rem; color: var(--text-main);">Apply 16% Federal Excise Duty (FED) on processing fee</span>
+            <label class="switch">
+              <input type="checkbox" id="check-fed" checked>
+              <span class="slider-switch"></span>
+            </label>
+          </div>
+
+          <!-- Tracker Options -->
+          <div class="form-group" style="margin-top: 1rem;">
+            <label class="form-label">GPS Tracking Device Billing</label>
+            <div class="btn-group" role="group">
+              <button type="button" class="btn-toggle active" data-tracker-mode="monthly" id="btn-tracker-monthly">Monthly Subscription</button>
+              <button type="button" class="btn-toggle" data-tracker-mode="upfront" id="btn-tracker-upfront">Upfront Installation</button>
+            </div>
+          </div>
+
+          <div id="monthly-tracker-group" class="form-group" style="margin-bottom: 0;">
+            <label class="form-label" for="input-tracker-monthly">Monthly Tracker Fee (PKR)</label>
+            <input type="text" id="input-tracker-monthly" class="text-input" value="1,500" inputmode="numeric">
+          </div>
+
+          <div id="upfront-tracker-group" class="form-group" style="margin-bottom: 0; display: none;">
+            <label class="form-label" for="input-tracker-upfront">Upfront Tracker Cost (PKR)</label>
+            <input type="text" id="input-tracker-upfront" class="text-input" value="20,000" inputmode="numeric">
+          </div>
+        </article>
+
+        <!-- 5. SBP Debt Burden Ratio (DBR) Affordability Check Card -->
+        <article class="card">
+          <div class="card-title">
+            <span class="icon-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
+              SBP 40% DBR Affordability Verification
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="input-monthly-income">
+              Your Net Monthly Disposable Income (PKR)
+              <span class="form-hint">Take-home salary after taxes</span>
+            </label>
+            <input type="text" id="input-monthly-income" class="text-input" value="200,000" inputmode="numeric" placeholder="e.g. 200,000">
+          </div>
+        </article>
+      </section>
+
+      <!-- Right Column: Results Dashboard (Sticky) -->
+      <section class="results-column" aria-label="Financing Calculation Results">
+        
+        <!-- SBP Alerts Container -->
+        <div id="sbp-cap-alert" class="alert-box alert-warning" style="display: none;"></div>
+
+        <!-- Hero Card: Total Monthly Ijarah Rental -->
+        <article class="card hero-card" id="card-hero-payment">
+          <div class="card-title" style="margin-bottom: 0.5rem;">
+            <span>Total Monthly Ijarah Rental</span>
+            <span class="badge badge-sbp" id="output-total-rate-badge">15.50% Annual Profit</span>
+          </div>
+          <div class="hero-amount" id="output-total-monthly">Rs. 57,937</div>
+          <div class="hero-subtitle">
+            Financed Principal: <strong id="output-financed-principal">Rs. 2,135,000</strong>
+          </div>
+        </article>
+
+        <!-- Monthly Breakdown & SVG Donut Chart Card -->
+        <article class="card">
+          <div class="card-title">
+            <span>Monthly Payment Breakdown</span>
+          </div>
+
+          <div class="chart-container" id="donut-chart-container">
+            <!-- Dynamically rendered SVG chart -->
+          </div>
+
+          <div class="breakdown-list">
+            <div class="breakdown-row">
+              <div class="breakdown-label">
+                <span class="color-dot dot-base"></span>
+                <span>Base Ijarah Rental (Principal + Profit)</span>
+              </div>
+              <div>
+                <span class="breakdown-value" id="output-base-rental">Rs. 51,354</span>
+                <span style="font-size: 0.75rem; color: var(--text-subtle); margin-left: 0.35rem;" id="pct-base-rental">89%</span>
+              </div>
+            </div>
+
+            <div class="breakdown-row">
+              <div class="breakdown-label">
+                <span class="color-dot dot-takaful"></span>
+                <span>Monthly Takaful (Asset Insurance)</span>
+              </div>
+              <div>
+                <span class="breakdown-value" id="output-monthly-takaful">Rs. 5,083</span>
+                <span style="font-size: 0.75rem; color: var(--text-subtle); margin-left: 0.35rem;" id="pct-monthly-takaful">9%</span>
+              </div>
+            </div>
+
+            <div class="breakdown-row">
+              <div class="breakdown-label">
+                <span class="color-dot dot-tracker"></span>
+                <span>Monthly Tracker Device Fee</span>
+              </div>
+              <div>
+                <span class="breakdown-value" id="output-monthly-tracker">Rs. 1,500</span>
+                <span style="font-size: 0.75rem; color: var(--text-subtle); margin-left: 0.35rem;" id="pct-monthly-tracker">3%</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Initial Outflow Card (Due at Delivery) -->
+        <article class="card">
+          <div class="card-title">
+            <span>Initial Outflow (Due at Delivery)</span>
+            <span class="badge" style="background: var(--color-primary-light); color: var(--color-primary);" id="output-total-initial-outflow">Rs. 984,537</span>
+          </div>
+
+          <div class="breakdown-list">
+            <div class="breakdown-row">
+              <span class="breakdown-label">Security Deposit (Down Payment)</span>
+              <span class="breakdown-value" id="out-deposit-amt">Rs. 915,000</span>
+            </div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">Bank Processing Fee</span>
+              <span class="breakdown-value" id="out-processing-fee">Rs. 10,000</span>
+            </div>
+            <div class="breakdown-row" id="out-fed-row">
+              <span class="breakdown-label">16% Federal Excise Duty (FED)</span>
+              <span class="breakdown-value" id="out-fed-amt">Rs. 1,600</span>
+            </div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">1st Month Advance Rental</span>
+              <span class="breakdown-value" id="out-advance-rental">Rs. 57,937</span>
+            </div>
+            <div class="breakdown-row" id="out-upfront-tracker-row" style="display: none;">
+              <span class="breakdown-label">Upfront Tracker Installation</span>
+              <span class="breakdown-value" id="out-upfront-tracker">Rs. 0</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- SBP 40% DBR Affordability Status Card -->
+        <article class="card">
+          <div class="card-title">
+            <span>SBP 40% DBR Affordability Status</span>
+            <span id="dbr-status-badge"></span>
+          </div>
+
+          <div class="meter-bar-container">
+            <div class="meter-threshold-marker" title="SBP 40% Benchmark Limit"></div>
+            <div class="meter-fill" id="dbr-meter-fill" style="width: 29%;"></div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem;">
+            <span>0%</span>
+            <span>SBP 40% Cap</span>
+            <span>Current: <strong id="dbr-percentage-display" style="color: var(--text-main);">29.0%</strong></span>
+          </div>
+
+          <p id="dbr-status-message" style="font-size: 0.8rem; line-height: 1.4; color: var(--text-muted);">
+            <!-- Populated dynamically -->
+          </p>
+        </article>
+
+        <!-- Complete Lifecycle Commitment Card -->
+        <article class="card">
+          <div class="card-title">
+            <span>Total Lifecycle Outflow Summary</span>
+          </div>
+          <div class="breakdown-list">
+            <div class="breakdown-row">
+              <span class="breakdown-label">Total Cash Outflow Across Tenure</span>
+              <span class="breakdown-value" id="out-total-outflow">Rs. 4,402,814</span>
+            </div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">Total Bank Profit Paid</span>
+              <span class="breakdown-value" id="out-total-profit">Rs. 946,214</span>
+            </div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">Total Takaful Paid</span>
+              <span class="breakdown-value" id="out-total-takaful">Rs. 305,000</span>
+            </div>
+            <div class="breakdown-row">
+              <span class="breakdown-label">Ownership Transfer Mechanism</span>
+              <span class="badge badge-sbp" style="font-size: 0.7rem;">Gift Deed (Hiba) / Rs. 1,000</span>
+            </div>
+          </div>
+        </article>
+      </section>
+    </main>
+
+    <!-- Manage Custom Banks Modal -->
+    <div class="modal-overlay" id="modal-manage-banks" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modal-title" style="font-size: 1.15rem; font-weight: 700;">Manage Islamic Bank Profiles</h2>
+          <button type="button" class="btn-close" id="btn-close-modal" aria-label="Close dialog">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+
+        <p style="font-size: 0.825rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+          Add custom banking packages or modify spreads. All custom configurations are securely stored in your browser's local storage with zero cloud dependencies.
+        </p>
+
+        <div id="modal-banks-list" style="margin-bottom: 1.5rem;">
+          <!-- Dynamically populated list of banks -->
+        </div>
+
+        <h3 style="font-size: 0.95rem; font-weight: 600; margin-bottom: 0.75rem;">Add New Bank Profile</h3>
+        <form id="form-custom-bank">
+          <div class="form-group">
+            <label class="form-label" for="bank-modal-name">Bank & Facility Name</label>
+            <input type="text" id="bank-modal-name" class="text-input" placeholder="e.g. Dubai Islamic Bank Auto Finance" required>
+          </div>
+          <div class="input-row" style="margin-bottom: 1rem;">
+            <div class="form-group" style="flex: 1; margin-bottom: 0;">
+              <label class="form-label" for="bank-modal-kibor">KIBOR (%)</label>
+              <input type="number" id="bank-modal-kibor" class="text-input" step="0.25" value="13.0" required>
+            </div>
+            <div class="form-group" style="flex: 1; margin-bottom: 0;">
+              <label class="form-label" for="bank-modal-spread">Spread (%)</label>
+              <input type="number" id="bank-modal-spread" class="text-input" step="0.25" value="2.75" required>
+            </div>
+          </div>
+          <div class="input-row" style="margin-bottom: 1.25rem;">
+            <div class="form-group" style="flex: 1; margin-bottom: 0;">
+              <label class="form-label" for="bank-modal-takaful">Takaful (%)</label>
+              <input type="number" id="bank-modal-takaful" class="text-input" step="0.1" value="2.0" required>
+            </div>
+            <div class="form-group" style="flex: 1; margin-bottom: 0;">
+              <label class="form-label" for="bank-modal-fee">Fee (PKR)</label>
+              <input type="text" id="bank-modal-fee" class="text-input" value="10,000" required>
+            </div>
+          </div>
+          <div style="display: flex; gap: 0.75rem; justify-content: flex-end;">
+            <button type="button" class="btn-secondary" id="btn-reset-default-banks">Restore Official Bank Defaults</button>
+            <button type="submit" class="btn-primary">Save Bank Profile</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Application Logic Modules -->
+  <script type="module" src="src/js/app.js"></script>
+</body>
+</html>
