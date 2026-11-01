@@ -46,3 +46,19 @@ export function parseCleanNumber(input) {
   const parsed = parseFloat(cleaned);
   return isNaN(parsed) ? 0 : parsed;
 }
+
+/**
+ * Escapes HTML special characters to prevent Cross-Site Scripting (XSS).
+ * @param {string} str - Raw string
+ * @returns {string} Sanitized string safe for HTML rendering
+ */
+export function escapeHTML(str) {
+  if (!str) return '';
+  return String(str)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+

@@ -14,7 +14,7 @@ This document details the user stories and testable acceptance criteria for the 
 - **Job Reference**: [Job 1: Estimate Accurate Shariah-Compliant Monthly Commitment](file:///home/faiq/Development/Projects/knowledgecity/docs/jobs-to-be-done.md)
 - **Story Statement**:  
   *As a Salaried Professional, I want to input my desired vehicle price, security deposit percentage, and tenure so that I can see the exact monthly Ijarah installment broken down into base rental, Takaful, and tracker fees.*
-- **Status**: `Not implemented`
+- **Status**: `Implemented`
 
 ### Acceptance Criteria:
 1. **Normal Scenario**:
@@ -37,7 +37,7 @@ This document details the user stories and testable acceptance criteria for the 
 - **Job Reference**: [Job 6: Enforce Regulatory Engine Displacement Tenure Limits](file:///home/faiq/Development/Projects/knowledgecity/docs/jobs-to-be-done.md)
 - **Story Statement**:  
   *As an Automotive Showroom Sales Consultant, I want the calculator to enforce the SBP 3-year maximum tenure limit for vehicles above 1,000 cc so that I do not quote non-compliant financing plans.*
-- **Status**: `Not implemented`
+- **Status**: `Implemented`
 
 ### Acceptance Criteria:
 1. **Selecting Engine Displacement $> 1,000\text{ cc}$**:
@@ -56,7 +56,7 @@ This document details the user stories and testable acceptance criteria for the 
 - **Job Reference**: [Job 4: Bridge the SBP Rs. 3 Million Financing Cap for High-Value Vehicles](file:///home/faiq/Development/Projects/knowledgecity/docs/jobs-to-be-done.md)
 - **Story Statement**:  
   *As a Self-Employed Businessman, I want the calculator to detect if my financed principal exceeds the SBP Rs. 3,000,000 cap so that I know the minimum down payment required to comply with banking regulations.*
-- **Status**: `Not implemented`
+- **Status**: `Implemented`
 
 ### Acceptance Criteria:
 1. **Financing Exceeding Limit**:
@@ -75,7 +75,7 @@ This document details the user stories and testable acceptance criteria for the 
 - **Job Reference**: [Job 2: Verify SBP Debt Burden Ratio (DBR) Affordability](file:///home/faiq/Development/Projects/knowledgecity/docs/jobs-to-be-done.md)
 - **Story Statement**:  
   *As a Salaried Professional, I want to enter my monthly take-home income so that I can see my Debt Burden Ratio and verify whether I meet SBP eligibility rules.*
-- **Status**: `Not implemented`
+- **Status**: `Implemented`
 
 ### Acceptance Criteria:
 1. **Eligible Scenario ($\text{DBR} \le 40\%$)**:
@@ -98,7 +98,7 @@ This document details the user stories and testable acceptance criteria for the 
 - **Job Reference**: [Job 3: Determine Total Initial Drive-Off Cash Requirement](file:///home/faiq/Development/Projects/knowledgecity/docs/jobs-to-be-done.md)
 - **Story Statement**:  
   *As a car buyer, I want an itemized breakdown of all upfront charges so that I know the exact cash required to take delivery of the vehicle.*
-- **Status**: `Not implemented`
+- **Status**: `Implemented`
 
 ### Acceptance Criteria:
 1. **Complete Breakdown Rendering**:
@@ -117,7 +117,7 @@ This document details the user stories and testable acceptance criteria for the 
 - **Job Reference**: [Job 5: Compare Financing Terms Across Pakistani Islamic Banks](file:///home/faiq/Development/Projects/knowledgecity/docs/jobs-to-be-done.md)
 - **Story Statement**:  
   *As an Automotive Showroom Sales Consultant, I want 1-click presets for popular Pakistani cars so that I can quote walk-in customers instantly without manually researching vehicle specs.*
-- **Status**: `Not implemented`
+- **Status**: `Implemented`
 
 ### Acceptance Criteria:
 1. **Selecting Suzuki Alto Preset**:
@@ -134,7 +134,7 @@ This document details the user stories and testable acceptance criteria for the 
 - **Job Reference**: [Job 5: Compare Financing Terms Across Pakistani Islamic Banks](file:///home/faiq/Development/Projects/knowledgecity/docs/jobs-to-be-done.md)
 - **Story Statement**:  
   *As a Comparison Shopper, I want to select between major Pakistani Islamic banks (Meezan Bank, BankIslami, Bank Alfalah, Faysal Bank) so that I can see their respective profit spreads, Takaful rates, and fees.*
-- **Status**: `Not implemented`
+- **Status**: `Implemented`
 
 ### Acceptance Criteria:
 1. **Selecting Meezan Bank**:
@@ -155,7 +155,7 @@ This document details the user stories and testable acceptance criteria for the 
 - **Job Reference**: [Job 7: Maintain Custom Bank Rates Without Backend Dependencies](file:///home/faiq/Development/Projects/knowledgecity/docs/jobs-to-be-done.md)
 - **Story Statement**:  
   *As a Sales Consultant, I want to customize bank rates or add a new bank in a lightweight settings modal with local storage persistence and a one-click reset option so that I can maintain updated financing packages.*
-- **Status**: `Not implemented`
+- **Status**: `Implemented`
 
 ### Acceptance Criteria:
 1. **Saving Custom Bank**:
@@ -174,7 +174,7 @@ This document details the user stories and testable acceptance criteria for the 
 - **Job Reference**: [Job 1: Estimate Accurate Shariah-Compliant Monthly Commitment](file:///home/faiq/Development/Projects/knowledgecity/docs/jobs-to-be-done.md)
 - **Story Statement**:  
   *As a user, I want the calculator to prevent invalid inputs (negative values, deposit > price, non-numeric keystrokes) so that the calculation never displays broken states.*
-- **Status**: `Not implemented`
+- **Status**: `Implemented`
 
 ### Acceptance Criteria:
 1. **Deposit Exceeding Vehicle Price**:

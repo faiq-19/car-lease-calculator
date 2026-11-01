@@ -22,7 +22,7 @@ import {
 } from './core/sbp-rules.js';
 
 import { VEHICLE_PRESETS, DEFAULT_BANKS } from './core/presets.js';
-import { formatPKR, formatPercent, parseCleanNumber } from './ui/formatters.js';
+import { formatPKR, formatPercent, parseCleanNumber, escapeHTML } from './ui/formatters.js';
 import { renderDonutChart } from './ui/charts.js';
 import { getSavedBanks, saveBanks, restoreDefaultBanks, getSavedTheme, saveTheme } from './storage/local-store.js';
 import { $, $$, onInputSync, getIcon } from './ui/dom.js';
@@ -78,9 +78,9 @@ class IjarahApp {
 
     container.innerHTML = VEHICLE_PRESETS.map((p, idx) => `
       <button type="button" class="preset-chip ${idx === 0 ? 'active' : ''}" data-preset-id="${p.id}" id="preset-${p.id}">
-        <span class="preset-name">${p.name}</span>
+        <span class="preset-name">${escapeHTML(p.name)}</span>
         <span class="preset-price">${formatPKR(p.price)}</span>
-        <span class="preset-engine">${p.engineDisplacement}</span>
+        <span class="preset-engine">${escapeHTML(p.engineDisplacement)}</span>
       </button>
     `).join('');
   }
@@ -90,8 +90,8 @@ class IjarahApp {
     if (!selector) return;
 
     selector.innerHTML = this.banks.map(b => `
-      <option value="${b.id}" ${b.id === this.state.selectedBankId ? 'selected' : ''}>
-        ${b.name} (${b.bankSpread ? '+' + b.bankSpread + '% Spread' : ''})
+      <option value="${escapeHTML(b.id)}" ${b.id === this.state.selectedBankId ? 'selected' : ''}>
+        ${escapeHTML(b.name)} (${b.bankSpread ? '+' + b.bankSpread + '% Spread' : ''})
       </option>
     `).join('');
   }
@@ -390,13 +390,13 @@ class IjarahApp {
     list.innerHTML = this.banks.map(b => `
       <div class="breakdown-row" style="padding: 0.75rem 0;">
         <div>
-          <strong>${b.name}</strong>
+          <strong>${escapeHTML(b.name)}</strong>
           <div style="font-size: 0.75rem; color: var(--text-muted);">
             KIBOR: ${b.benchmarkKibor}% | Spread: +${b.bankSpread}% | Takaful: ${b.takafulRate}%
           </div>
         </div>
         <div>
-          ${b.id.startsWith('custom-') ? `<button type="button" class="btn-secondary" style="color: var(--color-danger); padding: 0.25rem 0.5rem;" data-delete-bank-id="${b.id}">Delete</button>` : `<span class="badge badge-sbp" style="font-size: 0.7rem;">Official</span>`}
+          ${b.id.startsWith('custom-') ? `<button type="button" class="btn-secondary" style="color: var(--color-danger); padding: 0.25rem 0.5rem;" data-delete-bank-id="${escapeHTML(b.id)}">Delete</button>` : `<span class="badge badge-sbp" style="font-size: 0.7rem;">Official</span>`}
         </div>
       </div>
     `).join('');
